@@ -1,0 +1,28 @@
+@mixin cross-sprite-mixin ($x, $nx, $sx, $y, $ny, $sy) {
+  $class: ();
+  @each $axis, $input, $seconds, $steps in (x, $x, $sx, $nx), (y, $y, $sy, $ny) {
+    @keyframes cross-#{$axis} {
+      0% { background-position-#{$axis}: 0px; }
+      100% { background-position-#{$axis}: -#{$input}px; }
+    }
+    $class: append($class, unquote('cross-#{$axis} #{$seconds}s steps(#{$steps}) infinite'), 'comma');
+  }
+  .cross { animation: $class; }
+}
+@mixin sprite-mixin ($frames, $size, $across, $down, $speed) {
+  @keyframes sprite {
+    $x: 0; $y: 0;
+    @for $i from 0 to $frames {
+      #{(100% / $frames) * $i} {
+        background-position: #{$x * $size * -1}px #{$y * $size * -1}px;
+        $x: $x + 1;
+        @if $x == $across {
+          $x: 0;
+          $y: $y + 1;
+          @if $y == $down {
+            $y: 0;
+  }}}}}
+  .sprite { animation: sprite #{$speed}s step-start infinite; }
+}
+// @include cross-sprite-mixin (4200, 7, .6, 3000, 5, 3);
+// @include sprite-mixin (35, 600, 7, 5, 3);

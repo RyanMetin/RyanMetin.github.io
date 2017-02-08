@@ -1,0 +1,30 @@
+@viewport {
+  width: device-width;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: black;
+  color: white;
+  font: normal normal normal 100%/1 sans-serif;
+}
+a {
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+ol, li, ul {
+  list-style-type: none;
+}
+template {
+  display: none;
+}
+[hidden] {
+  display: none !important;
+}
+[tabindex="-1"]:focus { 
+  outline: none !important;
+}
